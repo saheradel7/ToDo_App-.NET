@@ -1,0 +1,36 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "User Registration";
+}
+
+<div class="container">
+    <h2>User Registration</h2>
+
+    <form  method="post" action="/User/Registration">
+        <div class="form-group">
+            <label for="Name">Name:</label>
+            <input type="text" class="form-control" id="Name" name="Name" >
+        </div>
+
+        <div class="form-group">
+            <label for="Email">Email:</label>
+            <input type="email" class="form-control" id="Email" name="Email" >
+        </div>
+
+        <div class="form-group">
+            <label for="Password">Password:</label>
+            <input type="password" class="form-control" id="Password" name="Password">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    <div>
+        <a href="/User/Login"> login </a>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+}

@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Welcome to the Home Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Page background color */
+        body {
+            background-color: #f5f5f5;
+        }
+
+        /* Container background color */
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table background color */
+        table {
+            background-color: #ffffff;
+        }
+
+        /* Add your custom styles here */
+        .task-text {
+            cursor: pointer;
+        }
+
+        .task-done {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Welcome to the Home Page</h2>
+
+        @if (ViewBag.Tasks != null && ViewBag.Tasks.Count > 0)
+        {
+            <h3>Your Tasks:</h3>
+
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Number</th> <!-- Replace "ID" with "Number" -->
+                        <th>Task</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var task in ViewBag.Tasks)
+                    {
+                        <tr>
+                            <td>@task.Id</td> <!-- Display task's numerical ID -->
+                            <td>
+                                <span id="taskText_@task.Id" class="task-text" onclick="markAsDone(@task.Id)">@task.TaskText</span>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-success" onclick="markAsDone(@task.Id)">Done</button>
+                                <button type="button" class="btn btn-danger" onclick="deleteTask(@task.Id)">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No tasks found.</p>
+        }
+
+        <div>
+            <a href="/Task/CreatTask" class="btn btn-primary">Add Task</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function markAsDone(taskId) {
+            var taskTextElement = document.getElementById("taskText_" + taskId);
+
+            if (!taskTextElement.classList.contains("task-done")) {
+                taskTextElement.classList.add("task-done");
+            } else {
+                taskTextElement.classList.remove("task-done");
+            }
+        }
+
+        function deleteTask(taskId) {
+            $.ajax({
+                type: "POST",
+                url: "/Task/DeleteTask",
+                data: { taskId: taskId },
+                success: function (data) {
+                    if (data.success) {
+                        var row = document.getElementById("row_" + taskId);
+                        if (row) {
+                            row.remove();
+                        }
+                        location.reload();
+                    } else {
+                        alert("Failed to delete the task.");
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

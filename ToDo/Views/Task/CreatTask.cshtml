@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "CreatTask";
+}
+
+<h1>CreatTask</h1>
+
+
+<div class="container">
+
+
+    <form method="get" action="/Task/CreatTask">
+        <div class="form-group">
+            <label for="TaskText">your task:</label>
+            <input type="text" class="form-control" id="TaskText" name="TaskText">
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+    <br />
+    <div>
+        <a href="/User/Home" class="btn btn-primary"> Back to Home </a>
+    </div>
+</div>

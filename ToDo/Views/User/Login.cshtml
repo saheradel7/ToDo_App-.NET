@@ -1,0 +1,95 @@
+﻿@* 
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+<div>
+    <form method="post" action="/User/Login">
+       <div>
+             <lable for"Emai;">Email</lable>
+             <input type="text" name="Email" class="form form-control "/>
+        </div>
+        <div>
+            <lable for"Emai;">Password</lable>
+            <input type="text" name="Password" class="form form-control " />
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Login</button>
+
+
+    </form>
+    <div>
+        <a href="/User/Registration"> Register </a>
+    </div>
+</div>
+ *@
+@{
+    ViewData["Title"] = "Login";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Page background color */
+        body {
+            background-color: #f8f9fa;
+        }
+
+        /* Container background color and styling */
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 30px auto;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        /* Form label styling */
+        .form-group label {
+            font-weight: bold;
+        }
+
+        /* Form input field styling */
+        .form-control {
+            margin-bottom: 10px;
+        }
+
+        /* Login button styling */
+        .btn-login {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+
+        <form method="post" action="/User/Login">
+            <div class="form-group">
+                <label for="Email">Email:</label>
+                <input type="email" name="Email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="Password">Password:</label>
+                <input type="password" name="Password" class="form-control" required>
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary btn-login">Login</button>
+        </form>
+        <div>
+            <a href="/User/Registration">Register</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
