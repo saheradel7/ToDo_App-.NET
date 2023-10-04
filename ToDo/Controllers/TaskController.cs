@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ToDo.Models;
+using Task = ToDo.Models.Task;
 
 namespace ToDo.Controllers
 {
@@ -29,7 +30,19 @@ namespace ToDo.Controllers
         }
 
 
-
+        public IActionResult Edit(int Id)
+        {
+            Task task = context.Tasks.FirstOrDefault(t => t.Id == Id);
+            return View(task);
+        }
+        [HttpPost]
+        public IActionResult Edit(int id, string tasktext)
+        {
+            Task task = context.Tasks.FirstOrDefault(t => t.Id == id);
+            task.TaskText=tasktext;
+            context.SaveChanges();
+            return RedirectToAction("home", "user");
+        }
 
 
 

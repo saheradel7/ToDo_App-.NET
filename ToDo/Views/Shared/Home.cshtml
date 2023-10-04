@@ -44,21 +44,23 @@
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>Number</th> <!-- Replace "ID" with "Number" -->
+                        <th>Number</th>
                         <th>Task</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var task in ViewBag.Tasks)
+                    @for (var i = 0; i < ViewBag.Tasks.Count; i++)
                     {
+                        var task = ViewBag.Tasks[i];
                         <tr>
-                            <td>@task.Id</td> <!-- Display task's numerical ID -->
+                            <td>@(i + 1)</td>
                             <td>
-                                <span id="taskText_@task.Id" class="task-text" onclick="markAsDone(@task.Id)">@task.TaskText</span>
+                                <span id="taskText_@task.Id" class="task-text" onclick="markAsDone(@task.Id)"><strong>@task.TaskText</strong></span>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-success" onclick="markAsDone(@task.Id)">Done</button>
+                                <a href="/task/Edit/@task.Id" class="btn btn-primary">Edit</a>
                                 <button type="button" class="btn btn-danger" onclick="deleteTask(@task.Id)">Delete</button>
                             </td>
                         </tr>
